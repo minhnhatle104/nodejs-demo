@@ -4,6 +4,7 @@ const port = 3000;
 const expressHbs = require("express-handlebars");
 const { createPagination } = require("express-handlebars-paginate");
 const config = require("./config/config");
+const pg = require('pg')
 
 const Sequelize = require("sequelize");
 
@@ -14,6 +15,7 @@ const sequelize = new Sequelize(
     {
         host: config.development.host,
         dialect: 'postgres',
+        dialectModule: pg,
         dialectOptions: {
             ssl: {
                 require: true,
