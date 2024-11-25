@@ -3,34 +3,6 @@ const app = express();
 const port = 3000;
 const expressHbs = require("express-handlebars");
 const { createPagination } = require("express-handlebars-paginate");
-const config = require("./config/config");
-const pg = require('pg')
-
-const Sequelize = require("sequelize");
-
-const sequelize = new Sequelize(
-    config.development.database,
-    config.development.username,
-    config.development.password,
-    {
-        host: config.development.host,
-        dialect: 'postgres',
-        dialectModule: pg,
-        dialectOptions: {
-            ssl: {
-                require: true,
-                rejectUnauthorized: false,
-                ca: config.development.ca
-            }
-        }
-    }
-);
-
-sequelize.authenticate().then(() => {
-    console.log('Connection has been established successfully.');
-}).catch((error) => {
-    console.error('Unable to connect to the database: ', error);
-});
 
 app.use(express.static(process.cwd() + "/html"))
 
