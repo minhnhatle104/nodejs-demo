@@ -12,7 +12,7 @@ require('dotenv').config({
 });; // Load environment variables from .env file and override username ( default username = username of local machine)
 
 // Path to the config.json file
-const configPath = path.join(__dirname, './config/config.json');
+const configPath = path.join("./tmp", 'config.json');
 
 // Read and parse the existing config.json
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
@@ -36,11 +36,11 @@ if (currentCa !== process.env.ca || currentUsername !== process.env.username || 
     console.log('config.json updated successfully.');
 }
 
-app.use(express.static(__dirname + "/html"))
+app.use(express.static(process.cwd() + "/html"))
 
 app.engine('hbs', expressHbs.engine({
-    layoutsDir: __dirname + "/views/layouts",
-    partialsDir: __dirname + "/views/partials",
+    layoutsDir: process.cwd() + "/views/layouts",
+    partialsDir: process.cwd() + "/views/partials",
     extname: "hbs",
     defaultLayout: "layout",
     runtimeOptions: {
