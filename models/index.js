@@ -10,7 +10,6 @@ const config = require('../config/config.js')[env];
 const db = {};
 
 let sequelize;
-console.log("config: " + JSON.stringify(config))
 sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 fs

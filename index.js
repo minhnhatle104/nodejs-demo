@@ -4,11 +4,11 @@ const port = 3000;
 const expressHbs = require("express-handlebars");
 const { createPagination } = require("express-handlebars-paginate");
 
-app.use(express.static(process.cwd() + "/html"))
+app.use(express.static(__dirname + "/html"))
 
 app.engine('hbs', expressHbs.engine({
-    layoutsDir: process.cwd() + "/views/layouts",
-    partialsDir: process.cwd() + "/views/partials",
+    layoutsDir: __dirname + "/views/layouts",
+    partialsDir: __dirname + "/views/partials",
     extname: "hbs",
     defaultLayout: "layout",
     runtimeOptions: {
@@ -27,6 +27,7 @@ app.engine('hbs', expressHbs.engine({
 })
 );
 
+app.set("views", __dirname + "/views");
 app.set('view engine', 'hbs');
 
 app.get("/", (req, res) => {
